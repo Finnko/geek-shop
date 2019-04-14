@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Home",
+    "link": "#"
+  },
+  {
+    "name": "Men",
+    "link": "catalog.html"
+  },
+  {
+    "name": "Women",
+    "link": "catalog.html"
+  },
+  {
+    "name": "Kids",
+    "link": "catalog.html"
+  },
+  {
+    "name": "Accessories",
+    "link": "catalog.html"
+  },
+  {
+    "name": "Featured",
+    "link": "catalog.html"
+  },
+  {
+    "name": "Hot Deals",
+    "link": "catalog.html"
+  }
+]
