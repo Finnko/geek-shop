@@ -1,0 +1,200 @@
+@import "_vars"
+
+//******* PAGE CATALOG *******
+
+//*******  Section Catalog *******
+
+.main
+  padding: 59px 0 110px
+
+.category
+  max-width: 263px
+  width: 100%
+  &__summary
+    color: #6f6e6e
+    font-weight: 700
+    text-transform: uppercase
+    border-left: 5px solid $color-pink
+    padding: 11px 19px
+    position: relative
+    transition: all 0.3s
+    margin-bottom: 16px
+    display: block
+    border-bottom: 1px solid #eaeaea
+    &:focus
+      color: $color-pink
+  &__list
+    margin-left: 17px
+    margin-bottom: 35px
+  &__link
+    color: #6f6e6e
+    &:hover
+      color: $color-pink
+
+.category__item:not(:last-child)
+  margin-bottom: 16px
+
+.category__summary::-webkit-details-marker
+  display: none
+
+.category__summary:after
+  content: '\25B6'
+  font-size: 10px
+  position: absolute
+  right: 5%
+  top: 50%
+  transform: translateY(-50%)
+
+.category__details[open] > .category__summary:after
+  content: '\25BC'
+
+.catalog-main
+  max-width: 847px
+  width: 100%
+
+.head-panel
+  margin-bottom: 26px
+  color: #6f6e6e
+  &__item
+    max-width: 262px
+    width: 100%
+  &__title
+    text-transform: uppercase
+    margin-bottom: 19px
+  &__menu
+    max-width: 180px
+  &__link
+    letter-spacing: 0
+    color: #6f6e6e
+    &:hover
+      color: $color-pink
+
+.head-panel__menu:not(:last-child)
+  margin-bottom: 8px
+
+.head-panel__list:not(:last-child)
+  padding-right: 13px
+
+.head-panel__list:not(:first-child)
+  padding-left: 13px
+
+.head-panel__list:nth-child(2)
+  border-left: 1px solid #dfdfdf
+  border-right: 1px solid #dfdfdf
+
+.size
+  flex-wrap: wrap
+  &__item
+    margin-right: 22px
+    margin-bottom: 12px
+  &__title
+    text-transform: uppercase
+    position: relative
+    cursor: pointer
+    padding-left: 22px
+
+.size__title:before
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 1
+  width: 12px
+  height: 12px
+  border: 1px solid #eaeaea
+  content: ''
+  transition-timing-function: ease-in
+  transition-duration: 0.1s
+
+input[type="checkbox"]
+  position: absolute
+  width: 1px
+  height: 1px
+  margin-top: -1px
+  border: none
+  padding: 0
+  clip: rect(0 0 0 0)
+  overflow: hidden
+
+input[type="checkbox"]:checked ~ label::before
+  width: 12px
+  height: 6px
+  border-color: $color-pink
+  border-top-style: none
+  border-right-style: none
+  transform: rotate(-45deg)
+
+.price__text
+  margin-top: 8px
+
+.sort
+  padding: 10px
+  background-color:  #f3f3f3
+  align-items: center
+  justify-content: flex-start
+  margin-bottom: 48px
+  color: #6f6e6e
+  &__box
+    border: 1px solid #eaeaea
+    background-color: #fff
+  &__text
+    border-right: 1px solid #eaeaea
+    padding: 7px 9px 7px 12px
+  &__btn
+    padding: 7px 9px 7px 12px
+    text-align: left
+    color:  #6f6e6e
+  &__icon
+    margin-left: 11px
+
+.sort__box:not(:last-child)
+  margin-right: 12px
+
+.pages
+  max-width: 262px
+  padding: 12px 18px
+  border: 1px solid #eaeaea
+  &__item
+    margin-right: 16px
+  &__link
+    color: #c4c4c4
+    font-size: 16px
+    font-weight: 300
+    &:hover
+      color: $color-pink
+  &__btn
+    padding: 13px 45px
+    color: #c4c4c4
+    border: 1px solid #eaeaea
+    &:hover
+      border: 1px solid $color-pink
+      color: $color-pink
+
+.pages__item:nth-child(7), .pages__item:nth-child(8)
+  margin-right: 0
+
+
+
+//*******  Section Pluses *******
+
+.pluses
+  background-color: #222224
+  padding: 87px 0 108px
+  text-align: center
+
+.plus__img
+  display: block
+  margin: 0 auto 22px
+  transition: all 0.4s
+  &:hover
+    transform: translateY(-5px)
+
+.plus__title
+  color: #fbfbfb
+  font-size: 20px
+  margin-bottom: 9px
+
+.plus__text
+  color: #fbfbfb
+  font-weight: 300
+
+

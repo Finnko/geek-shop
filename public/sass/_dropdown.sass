@@ -1,0 +1,200 @@
+//Drop Down Styles
+
+@import "_vars"
+
+.drop-box
+  border-radius: 5px
+  border: 1px solid #e9e9e9
+  position: absolute
+  padding: 14px 20px 0 23px
+  background-color: #fff
+  display: none
+  left: -85px
+  top: 22px
+  box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.08)
+  z-index: 10
+
+
+.drop-box:before
+  content: ""
+  display: block
+  width: 14px
+  height: 14px
+  background-color: #fff
+  position: absolute
+  top: -8px
+  left: 94px
+  transform: rotate(45deg)
+  border-top: 1px solid #e8e8e8
+  border-left: 1px solid #e8e8e8
+
+.menu__list:hover .drop-box
+  display: flex
+
+.drop__heading
+  font-weight: 400
+  font-size: 14px
+  text-transform: uppercase
+  margin-bottom: 7px
+
+.drop__menu
+  padding-top: 13px
+  border-top: 1px solid #e8e8e8
+
+.drop__item:not(:last-child)
+  margin-bottom: 10px
+
+.drop__link
+  color: #4f4f4f
+  margin-bottom: 10px
+  &:hover
+    color: $color-pink
+
+.drop__down
+  width: 233px
+  & ul:first-of-type
+    margin-bottom: 23px
+
+.drop__down:not(:last-child)
+  margin-right: 46px
+
+.drop__super-sale
+  width: 255px
+  height: 118px
+  background-image: url(../img/Super_sale_image.jpg)
+  position: absolute
+  right: 21px
+  bottom: 19px
+  padding: 10px
+  align-items: flex-end
+  justify-content: flex-end
+
+.drop__super-sale-text
+  width: 80px
+  color: #fff
+  font-size: 22px
+  text-transform: uppercase
+
+.drop-box-second
+  left: -105px
+  &:before
+    left: 125px
+
+.drop-box-third
+  left: -195px
+  &:before
+    left: 203px
+
+.drop-box-fourth
+  left: -255px
+  &:before
+    left: 293px
+
+.drop-box-fifth
+  left: -375px
+  &:before
+    left: 400px
+
+.drop-box-last
+  left: -480px
+  &:before
+    left: 513px
+
+
+//Browse Drop down Styles
+
+.drop-box-browse
+  padding: 15px 13px 12px 12px
+  width: 260px
+  top: 37px
+  left: 0
+  display: none
+  z-index: 3
+  & ul:first-of-type
+    margin-bottom: 23px
+  &:before
+    left: 65px
+
+.nav-left__drop, .nav-right__drop
+  position: relative
+
+.nav-left__drop:hover .drop-box-browse
+  display: block
+
+//Cart Drop down styles
+
+.drop-box-cart
+  border-radius: 5px
+  border: 1px solid #e9e9e9
+  position: absolute
+  background-color: #fff
+  box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.08)
+  z-index: 10
+  width: 265px
+  top: 35px
+  left: -35px
+  padding: 4px 16px 20px
+  &:before
+    left: 45px
+  & a:first-of-type
+    margin-bottom: 11px
+
+.box-cart
+  position: relative
+  margin-bottom: 18px
+  &__img
+    flex-basis: 72px
+    img
+      max-width: 100%
+  &__item
+    padding: 16px 0
+    border-bottom: 1px solid #e8e8e8
+  &__wrap
+    margin-left: 14px
+  &__title
+    font-size: 12px
+    font-weight: 700
+    margin-bottom: 7px
+    text-transform: uppercase
+  &__price
+    color: $color-pink
+    font-size: 12px
+    margin-top: 7px
+  &__icon
+    color: #c0c0c0
+    font-size: 16px
+    margin-left: auto
+    &:hover
+      color: $color-pink
+  &__star
+    color: #e4af48
+  &__total
+    margin-bottom: 32px
+  &__text
+    font-size: 16px
+    font-weight: 700
+    text-transform: uppercase
+  &__btn
+    display: block
+    color: #4a4a4a
+    padding: 16px 0
+    font-weight: 700
+    text-transform: uppercase
+    border: 1px solid #eaeaea
+    &:hover
+      color: $color-pink
+      border: 1px solid $color-pink
+
+.cart-quantity-items
+  position: absolute
+  left: 20px
+  top: -7px
+  font-size: 14px
+  width: 20px
+  height: 20px
+  text-align: center
+  color: #fff
+  font-weight: bold
+  line-height: 20px
+  border-radius: 50px
+  background-color: rgba($color-pink, 0.93)

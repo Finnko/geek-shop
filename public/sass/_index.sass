@@ -1,0 +1,249 @@
+@import "_vars"
+//*******  Section Deals  *******
+
+.deals
+  padding-bottom: 90px
+
+.deal__left, .deal__right
+  flex-direction: column
+  flex-basis: 49%
+
+.deal__left div:first-of-type, .deal__right div:first-of-type
+  margin-bottom: 20px
+
+.deal__heading
+  margin-top: 32px
+  font-size: 18px
+  font-weight: 900
+  text-transform: uppercase
+  padding: 9px 19px
+  max-width: 555px
+  background-color: #fff
+  & span
+    display: block
+
+.deal__large
+  height: 546px
+  align-items: flex-start
+  background: url('../img/hot-deal_back.jpg') no-repeat center center
+
+.deal__small
+  height: 261px
+  background: url('../img/offer_back.jpg') no-repeat center center
+  align-items: flex-start
+
+.deals-pink
+  font-size: 30px
+  color: $color-pink
+
+.deal__large_kids
+  background: url('../img/new-arrvl_back.jpg') no-repeat center center
+
+.deal__small_access
+  background: #dadad2 url('../img/trendy_back.jpg') no-repeat right center
+
+//*******  Section Featured  *******
+
+.featured-title
+  font-size: 30px
+  font-weight: 700
+  text-align: center
+
+.featured-text
+  color: #9f9f9f
+  text-align: center
+  line-height: 2em
+  margin-bottom: 55px
+
+.product-box
+  flex-wrap: wrap
+  margin: 0 -15px
+  &__product
+    display: block
+  &__img
+    display: block
+    max-width: 100%
+  &__description
+    padding: 15px 14px 17px
+  &__text
+    margin-bottom: 11px
+    text-transform: uppercase
+  &__price
+    color: $color-pink
+    font-size: 16px
+    font-weight: 700
+    text-transform: uppercase
+  &__item
+    position: relative
+    transition: all .4s
+    width: calc(100% / 12 * 4 - 30px)
+    margin: 15px
+    &_main
+      width: calc(100% / 12 * 3 - 30px)
+    &:hover
+      box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16)
+  &__overlay
+    width: 100%
+    height: 280px
+    justify-content: center
+    align-items: center
+    position: absolute
+    background-color: rgba(0, 0, 0, 0.63)
+    left: 0
+    top: 0
+    opacity: 0
+    transition: all .4s
+    &:hover
+      opacity: 1
+  &__add-cart
+    border: 1px solid #fff
+    border-radius: 3px
+    display: block
+    padding: 10px 14px 10px 43px
+    background: url('../img/white-cart.png') no-repeat 12px 6px
+    color: #fff
+    font-size: 13px
+    font-weight: 700
+    &:hover
+      box-shadow: 0 0 5px #fff
+
+.product-box__item:hover .product-box__overlay
+  opacity: 1
+
+.featured-btn
+  margin: 10px auto 0
+  display: block
+  padding: 12px 0
+  background-color: $color-pink
+  color: #fff
+  font-size: 16px
+  font-weight: 700
+  width: 212px
+  border: 1px solid transparent
+  &:after
+    content: '→'
+    margin-left: 8px
+  &:hover
+    border: 1px solid $color-pink
+    background-color: transparent
+    color: $color-pink
+
+
+//*******  Section Qualities  *******
+
+.qualities
+  padding: 113px 0 97px
+
+.quality
+  background-color: #222224
+  color: #fff
+  &__left
+    background: url('../img/big-offer_back.jpg') no-repeat left center
+    padding-left: 39px
+    max-width: 765px
+    width: 100%
+  &__box
+    margin-top: 126px
+  &__title
+    font-size: 54px
+    font-weight: 700
+    text-transform: uppercase
+  &__title-low
+    font-size: 32px
+    line-height: 0.5em
+  &__right
+    max-width: 375px
+    padding: 29px 30px 36px 42px
+  &__item
+    padding: 20px 0
+    margin-bottom: 5px
+  &__icon
+    margin-right: 36px
+  &__offer
+    margin-top: 5px
+  &__heading
+    color: #fbfbfb
+    font-size: 20px
+    margin-bottom: 10px
+    font-weight: 700
+  &__text
+    color: #fbfbfb
+    font-weight: 300
+    line-height: 1.7em
+
+//*******  Section Quote  *******
+
+.quote-subscribe
+  background: url('../img/subscribe.jpg') no-repeat center center / cover
+
+.quote
+  padding: 111px 0 200px
+  max-width: 569px
+  width: 100%
+  border-right: 1px solid #e3e3e3
+  &__desc
+    margin-top: 8px
+    line-height: 1.8em
+    max-width: 394px
+  &__icon
+    margin-right: 35px
+  & blockquote
+    font-size: 16px
+    font-weight: 300
+    font-style: italic
+    margin-bottom: 10px
+  &__name
+    color: $color-pink
+    font-size: 16px
+  &__place
+    font-size: 12px
+    font-weight: 300
+    line-height: 0.9em
+
+.subscribe
+  max-width: 570px
+  width: 100%
+  justify-content: center
+  &__wrap
+    margin-top: 147px
+    max-width: 386px
+    width: 100%
+  &__text
+    text-transform: uppercase
+    text-align: center
+    margin-bottom: 30px
+    & span
+      display: block
+      margin-bottom: 7px
+      font-size: 24px
+  &__form
+    position: relative
+  &__input
+    width: 100%
+    padding: 15px 28px 14px
+    color: #767677
+    font-size: 14px
+    border-radius: 23px
+    background-color: #e1e1e1
+  &__btn
+    width: 104px
+    padding: 16px 0 18px
+    border-radius: 0 23px 23px 0
+    background-color: $color-pink
+    color: #fff
+    overflow: hidden
+    position: absolute
+    top: 0
+    right: 0
+    &:hover
+      background-color: #cd586f
+
+.subscribe__input::placeholder
+  font-size: 14px
+  text-transform: capitalize
+  color: #767677
+
+
+
+
+

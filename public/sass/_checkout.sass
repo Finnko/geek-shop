@@ -1,0 +1,140 @@
+@import "_vars"
+//******* PAGE CHECKOUT *******
+
+//*******  Section Checkout *******
+
+.checkout
+  padding: 85px 0 63px
+
+.checkout-item__name::-webkit-details-marker
+  display: none
+
+.checkout-item__name::before
+  content: '\25B6'
+  color: #4a4a4a
+  padding-right: 0.5em
+
+.checkout-item:hover > .checkout-item__name::before
+  content: '\25B6'
+  color: $color-pink
+
+.checkout-item[open] > .checkout-item__name::before
+  content: '\25BC'
+  color: $color-pink
+
+.checkout-item__name
+  font-size: 16px
+  font-weight: 700
+  text-transform: uppercase
+  margin-bottom: 14px
+  padding-bottom: 20px
+  border-bottom: 1px solid #e8e8e8
+
+.info
+  padding: 0 0 80px 45px
+  &__reg
+    margin-right: 274px
+  &__sign
+    max-width: 390px
+    width: 100%
+  &__wrap
+    margin: 26px 0 44px
+  &__title
+    font-size: 13px
+    margin-bottom: 9px
+    font-weight: 400
+    text-transform: uppercase
+  &__sub-text
+    color: #b3b2b2
+    font-size: 13px
+    margin-bottom: 15px
+    &_chevron
+      line-height: 0.5em
+    &_red
+      color: #ff0d0d
+      margin: 16px 0 32px
+  &__radio
+    position: relative
+    text-transform: uppercase
+    font-size: 12px
+    padding-left: 35px
+    display: block
+    cursor: pointer
+    margin: 25px 0 24px
+  &__btn
+    max-width: 179px
+    width: 100%
+    padding: 14px 0
+    font-weight: 700
+    color: #4a4a4a
+    background-color: transparent
+    text-transform: uppercase
+    border: 1px solid #eaeaea
+    &:hover
+      border: 1px solid $color-pink
+      color: $color-pink
+  &__field
+    display: block
+    margin: 20px 0 10px
+    font-size: 12px
+  &__link
+    color: #222
+    border-bottom: 1px solid transparent
+    margin-left: 30px
+    &:hover
+      border-bottom: 1px solid $color-pink
+
+.info__radio::before,
+.info__radio::after
+  position: absolute
+  bottom: 0
+  left: 0
+  border-radius: 50%
+  content: ""
+
+.info__radio::before
+  width: 13px
+  height: 13px
+  border: solid 2px #555
+
+.info__radio::after
+  width: 17px
+  height: 17px
+  bottom: 0
+  left: 0
+  background-color: $color-pink
+  transition-duration: 0.28s
+  transition-property: transform
+  transform: scale(0)
+
+input[type="radio"]
+  position: absolute
+  width: 1px
+  height: 1px
+  margin-top: -1px
+  border: none
+  padding: 0
+  clip: rect(0 0 0 0)
+  overflow: hidden
+
+.info__chevron
+  letter-spacing: -7px
+  &:last-child
+    margin-right: 8px
+
+
+input[type="radio"]:checked ~ label::after
+  transform: scale(0.5)
+
+input[type="email"], input[type="password"]
+  border: 1px solid #eaeaea
+  color: #4a4a4a
+  font-size: 14px
+  padding: 17px 18px
+  width: 100%
+
+.info__field:after
+  content: '*'
+  color: #ff0d0d
+
+

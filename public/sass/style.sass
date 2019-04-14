@@ -1,0 +1,87 @@
+/**** Specification ****/
+@import "_vars"
+
+body
+  margin: 0
+  padding: 0
+  font-family: 'Lato', sans-serif
+  font-size: 14px
+  color: $body-color
+  font-weight: 400
+
+h1, h2, h3, h4, h5, h6  
+  margin: 0 
+  letter-spacing: 0.025em
+
+div, p, ul, span, li, a, input, button, form, textarea, blockquote, figure
+  box-sizing: border-box
+  margin: 0 
+  padding: 0
+  letter-spacing: 0.025em
+ 
+
+input, textarea, button, select
+  outline: none
+  border: none
+  background-color: transparent
+  letter-spacing: 0.025em
+
+input:focus, button:focus, select:focus
+  box-shadow: 0 0 3px rgba(241, 109, 127, 0.75)
+
+
+details, summary, figure
+  outline: none
+  border: none
+  letter-spacing: 0
+
+p  
+  line-height: 1.5em
+
+a  
+  text-decoration: none 
+  transition: all 0.3s ease
+
+ul, ol  
+  list-style-type: none 
+
+.d-flex  
+  display: -webkit-box 
+  display: -ms-flexbox 
+  display: -o-flex 
+  display: flex 
+
+.align-i-с  
+  align-items: center 
+
+.space-btw  
+  justify-content: space-between
+
+.space-around  
+  justify-content: space-around
+
+.container
+  width: 1140px
+  margin: 0 auto
+
+.button
+  cursor: pointer
+  border: none
+  font-weight: 400
+  font-size: 14px
+  text-align: center
+  transition: all .3s ease
+
+
+@import 'header'
+@import 'dropdown'
+@import "footer"
+@import "index"
+@import "single"
+@import "catalog"
+@import "cart"
+@import "checkout"
+
+
+
+ 
