@@ -172,7 +172,33 @@ input[type="checkbox"]:checked ~ label::before
 .pages__item:nth-child(7), .pages__item:nth-child(8)
   margin-right: 0
 
+//Feedback
 
+.feedback
+  padding: 90px 0
+  &-new
+    max-width: 425px
+    margin: 60px
+  &-input, textarea
+    border: 1px solid #eaeaea
+    color: #4a4a4a
+    font-size: 14px
+    padding: 17px 18px
+    width: 100%
+    margin-bottom: 20px
+  textarea
+    resize: none
+
+
+.comments
+    margin: 0 -15px
+    ul
+      flex-wrap: wrap
+    li
+      width: calc(100% / 12 * 3 - 30px)
+      margin: 15px
+    &-approved
+      padding: 60px 0
 
 //*******  Section Pluses *******
 

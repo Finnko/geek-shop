@@ -413,49 +413,16 @@
     </section>
     <section class="cart-content">
         <div class="container">
-          <div class="content" v-if="cart.length">
-              <div class="line">
-                  <div class="column-wide">
-                      <h3 class="content-heading">
-                          Product Details
-                      </h3>
-                  </div>
-                  <div class="column-short">
-                      <h3 class="content-heading">
-                          Unit Price
-                      </h3>
-                  </div>
-                  <div class="column-short">
-                      <h3 class="content-heading">
-                          Quantity
-                      </h3>
-                  </div>
-                  <div class="column-short">
-                      <h3 class="content-heading">
-                          Shipping
-                      </h3>
-                  </div>
-                  <div class="column-short">
-                      <h3 class="content-heading">
-                          Subtotal
-                      </h3>
-                  </div>
-                  <div class="column-short">
-                      <h3 class="content-heading">
-                          ACTION
-                      </h3>
-                  </div>
-              </div>
-              <main-cart :cart="cart"></main-cart>
+              <maincart :cart="cart" @ondelete="handleDeleteClick"></maincart>
               <div class="cart-buttons d-flex space-btw">
-                  <button class="cart-btn button" type="button">
+                  <button class="cart-btn button" type="button" @click="clearCart">
                       CLEAR SHOPPING CART
                   </button>
                   <button class="cart-btn button" type="button">
-                      CONTINUE sHOPPING
+                      CONTINUE SHOPPING
                   </button>
               </div>
-          </div>
+
           <div class="shipping d-flex space-btw">
                 <div class="shipping__item">
                     <h2 class="shipping__heading">
@@ -499,7 +466,7 @@
                         <h2 class="subtotal__heading">
                             GRAND TOTAL
                             <span class="pink">
-                            $0
+                            ${{total}}
                         </span>
                         </h2>
                     </div>

@@ -1007,6 +1007,31 @@ input[type="checkbox"]:checked ~ label::before {
 .pages__item:nth-child(7), .pages__item:nth-child(8) {
   margin-right: 0; }
 
+.feedback {
+  padding: 90px 0; }
+  .feedback-new {
+    max-width: 425px;
+    margin: 60px; }
+  .feedback-input, .feedback textarea {
+    border: 1px solid #eaeaea;
+    color: #4a4a4a;
+    font-size: 14px;
+    padding: 17px 18px;
+    width: 100%;
+    margin-bottom: 20px; }
+  .feedback textarea {
+    resize: none; }
+
+.comments {
+  margin: 0 -15px; }
+  .comments ul {
+    flex-wrap: wrap; }
+  .comments li {
+    width: calc(100% / 12 * 3 - 30px);
+    margin: 15px; }
+  .comments-approved {
+    padding: 60px 0; }
+
 .pluses {
   background-color: #222224;
   padding: 87px 0 108px;

@@ -30,13 +30,13 @@ Vue.component('product-item', {
             <img :src="item.image" alt="Product" class="product-box__img">
         </a>
         <div class="product-box__overlay d-flex">
-            <button type="button" class="product-box__add-cart" @click.prevent="handleBuyClick(item)">
+            <button type="button" class="product-box__add-cart button" @click.prevent="handleBuyClick(item)">
                 Add to Cart
             </button>
         </div>
         <div class="product-box__description">
             <p class="product-box__text">{{item.name}}</p>
-            <p class="product-box__price">{{item.price}}</p>
+            <p class="product-box__price">\${{item.price}}</p>
         </div>
     </div>        
   `,
@@ -156,6 +156,11 @@ const app = new Vue({
         items: [],
         cart: [],
         filterValue: '',
+        feedback: [],
+        approved: [],
+        name: '',
+        mail: '',
+        comment: '',
         isVisibleCart: false,
     },
     mounted() {
@@ -163,6 +168,18 @@ const app = new Vue({
             .then(response => response.json())
             .then((items) => {
                 this.cart = items;
+            });
+
+        fetch(`${API_URL}/feedback`)
+            .then((response) => response.json())
+            .then((items) => {
+                this.feedback= items;
+            });
+
+        fetch(`${API_URL}/feedback_approve`)
+            .then((response) => response.json())
+            .then((items) => {
+                this.approved= items;
             });
     },
     computed: {
@@ -208,6 +225,15 @@ const app = new Vue({
                     });
             }
         },
+        clearCart() {
+            this.cart.forEach((item) => {
+                fetch(`${API_URL}/cart/${item.id}`, {
+                    method: "DELETE"
+                }).then(() => {
+                    this.cart = [];
+                })
+            })
+        },
         handleDeleteClick(item) {
             if (item.quantity > 1) {
                 fetch(`${API_URL}/cart/${item.id}`, {
@@ -230,6 +256,36 @@ const app = new Vue({
                         this.cart = this.cart.filter((cartItem) => cartItem.id !== item.id);
                     });
             }
+        },
+        handleAddFeedback() {
+            fetch(`${API_URL}/feedback`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: this.name,
+                    mail: this.mail,
+                    comment: this.comment
+                })
+            })
+                .then((response) => response.json())
+                .then((item) => {
+                    this.feedback.push(item);
+                });
+        },
+        handleApproveFeedback(item) {
+            fetch(`${API_URL}/feedback_approve`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(item)
+            })
+                .then((response) => response.json())
+                .then((item) => {
+                    this.approved.push(item);
+                });
         }
     }
 });

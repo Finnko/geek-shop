@@ -61,6 +61,66 @@ app.use("/cart", (req, res, next) => {
     next();
 });
 
+app.get('/feedback', (req, res) => {
+    fs.readFile('./db/feedback.json', 'utf-8', (err, data) => {
+        if(err) {
+            return console.log(err);
+        }
+
+        res.send(data);
+    });
+});
+
+app.post('/feedback', (req, res) => {
+    fs.readFile('./db/feedback.json', 'utf-8', (err, data) => {
+        if(err) {
+            return console.log(err);
+        }
+
+        const comment = JSON.parse(data);
+        const lastId = 1;
+        comment.push({...req.body, "id": lastId});
+
+        fs.writeFile('./db/feedback.json', JSON.stringify(comment), (err) => {
+            if(err) {
+                return console.log(err);
+            }
+
+            res.send(req.body);
+        });
+    });
+});
+
+app.get('/feedback_approve', (req, res) => {
+    fs.readFile('./db/feedback_approve.json', 'utf-8', (err, data) => {
+        if(err) {
+            return console.log(err);
+        }
+
+        res.send(data);
+    });
+});
+
+app.post('/feedback_approve', (req, res) => {
+    fs.readFile('./db/feedback_approve.json', 'utf-8', (err, data) => {
+        if(err) {
+            return console.log(err);
+        }
+
+        const comment = JSON.parse(data);
+        comment.push(req.body);
+
+        fs.writeFile('./db/feedback_approve.json', JSON.stringify(comment), (err) => {
+            if(err) {
+                return console.log(err);
+            }
+
+            res.send(req.body);
+        });
+    });
+});
+
+
 app.get('/products', (req, res) => {
     fs.readFile('./db/products.json', 'utf-8', (err, data) => {
         if(err) {

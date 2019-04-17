@@ -1,21 +1,9 @@
-Vue.component('main-cart', {
+Vue.component('maincart', {
     props: ['cart'],
-    data() {
-        return {
-            cart: [],
-        };
-    },
     methods: {
         handleDeleteClick(item) {
             this.$emit('ondelete', item);
-        },
-    },
-    mounted() {
-        fetch(`${API_URL}/cart`)
-            .then(response => response.json())
-            .then((items) => {
-                this.cart = items;
-            });
+        }
     },
     computed: {
         total() {
@@ -23,7 +11,40 @@ Vue.component('main-cart', {
         }
     },
     template: `
-            <div class="line" v-for="item in cart">
+          <div class="shop-cart">
+                <div class="line" v-if="cart.length">
+                  <div class="column-wide">
+                      <h3 class="content-heading">
+                          Product Details
+                      </h3>
+                  </div>
+                  <div class="column-short">
+                      <h3 class="content-heading">
+                          Unit Price
+                      </h3>
+                  </div>
+                  <div class="column-short">
+                      <h3 class="content-heading">
+                          Quantity
+                      </h3>
+                  </div>
+                  <div class="column-short">
+                      <h3 class="content-heading">
+                          Shipping
+                      </h3>
+                  </div>
+                  <div class="column-short">
+                      <h3 class="content-heading">
+                          Subtotal
+                      </h3>
+                  </div>
+                  <div class="column-short">
+                      <h3 class="content-heading">
+                          ACTION
+                      </h3>
+                  </div>
+              </div>
+              <div class="line" v-for="item in cart">
                 <div class="column-wide">
                     <figure class="cart-item d-flex">
                         <a href="../single_page.html"  class="cart-item__img">
@@ -50,12 +71,12 @@ Vue.component('main-cart', {
                 </div>
                 <div class="column-short">
                     <p class="cart-text">
-                        \${{item.price}}
+                        {{item.price}}
                     </p>
                 </div>
                 <div class="column-short">
                     <label>
-                        <input type="number" min="1" max="20" class="cart-quantity" v-model="item.quantity">
+                        <input type="number" min="1" max="30" class="cart-quantity" v-model="item.quantity">
                     </label>
                 </div>
                 <div class="column-short">
@@ -65,7 +86,7 @@ Vue.component('main-cart', {
                 </div>
                 <div class="column-short">
                     <p class="cart-text">
-                        \${{item.price * item.quantity}}
+                        {{item.price * item.quantity}}
                     </p>
                 </div>
                 <div class="column-short">
@@ -74,5 +95,6 @@ Vue.component('main-cart', {
                     </button>
                 </div>
             </div>
+          </div>
             `,
 });
