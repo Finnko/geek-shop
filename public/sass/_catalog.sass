@@ -175,12 +175,16 @@ input[type="checkbox"]:checked ~ label::before
 //Feedback
 
 .feedback
-  padding: 90px 0
+  padding: 60px 0
+  text-align: center
+  h2
+    text-transform: uppercase
+    margin-bottom: 40px
   &-new
     max-width: 425px
-    margin: 60px
+    margin: 60px auto
   &-input, textarea
-    border: 1px solid #eaeaea
+    border: 2px solid #eaeaea
     color: #4a4a4a
     font-size: 14px
     padding: 17px 18px
@@ -189,7 +193,6 @@ input[type="checkbox"]:checked ~ label::before
   textarea
     resize: none
 
-
 .comments
     margin: 0 -15px
     ul
@@ -197,8 +200,29 @@ input[type="checkbox"]:checked ~ label::before
     li
       width: calc(100% / 12 * 3 - 30px)
       margin: 15px
-    &-approved
-      padding: 60px 0
+    &-name
+      font-size: 16px
+      text-transform: uppercase
+      margin-bottom: 15px
+      color: $color-pink
+    &-text
+      font-size: 15px
+      margin-bottom: 15px
+    &-btn
+      margin-bottom: 20px
+    &-email
+      margin-bottom: 25px
+      font-size: 16px
+
+.reviews
+  padding: 60px 0
+  text-align: center
+  background-color: #eee
+  h2
+    text-transform: uppercase
+    margin-bottom: 40px
+
+
 
 //*******  Section Pluses *******
 

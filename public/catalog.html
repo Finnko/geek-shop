@@ -77,10 +77,11 @@
                     </button>
                     <cart :cart="cart" v-if="isVisibleCart" @ondelete="handleDeleteClick"></cart>
                 </div>
-                <button type="button" class="nav-right__btn button">
+                <button type="button" id="show-modal" @click="showModal = true" class="nav-right__btn button button-open">
                     My Account
                     <i class="fas fa-caret-down"></i>
                 </button>
+                <modal v-if="showModal" @close="showModal = false">
             </div>
         </div>
     </div>
@@ -663,11 +664,15 @@
                     <input placeholder="Your e-mail" v-model="mail" type="email" required class="feedback-input">
                 </label>
                 <textarea placeholder="Your message" v-model="comment"></textarea>
-                <button type="button" @click.prevent="handleAddFeedback" class="button">
+                <button type="submit" @click.prevent="handleAddFeedback" class="button cart-btn">
                     Submit
                 </button>
             </form>
             <feedback-list :feedback="feedback" @approve="handleApproveFeedback"></feedback-list>
+        </div>
+    </section>
+    <section class="reviews">
+        <div class="container">
             <feedback-approved :approved="approved"></feedback-approved>
         </div>
     </section>

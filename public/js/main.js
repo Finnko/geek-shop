@@ -1,6 +1,5 @@
 const API_URL = 'http://localhost:3000';
 
-
 Vue.component('search', {
     data() {
         return {
@@ -20,6 +19,68 @@ Vue.component('search', {
             this.$emit('onsearch', this.searchQuery);
         }
     }
+});
+
+Vue.component('modal', {
+    template: `
+           <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+                <div class="modal-container">
+                    <div class="tabs">
+                        <input type="radio" name="tab" id="sign-in" class="tab-input" checked>
+                        <label for="sign-in" class="tab">Sign-in</label>
+                        <input type="radio" name="tab" class="tab-input" id="sign-up" >
+                        <label for="sign-up" class="tab">Sign-up</label>
+                        <div class="content">
+                            <button class="modal-button button-close" type="button" @click="$emit('close')">
+                            <i class="far fa-times-circle"></i>
+                            </button>
+                            <div class="sign-in">
+                                <h3>
+                                    Already Register? Login Now!
+                                </h3>
+                                <form action="#" class="reg">
+                                    <label>
+                                        <input type="text" name="login" placeholder="Enter Your Login" class="reg__input">
+                                    </label>
+                                    <label>
+                                        <input type="password" name="password" placeholder="Enter Your Password" class="reg__input">
+                                    </label>
+                                    <button type="submit" class="button cart-btn">
+                                        Login
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="sign-up">
+                                <h3>
+                                    Register Now!
+                                </h3>
+                                <form action="#" class="reg">
+                                    <label>
+                                        <input type="text" name="name" placeholder="Enter Your Name" class="reg__input">
+                                    </label>
+                                    <label>
+                                        <input type="text" name="login" placeholder="Enter Your Login" class="reg__input">
+                                    </label>
+                                    <label>
+                                        <input type="email" name="email" placeholder="Enter Your Email" class="reg__input">
+                                    </label>
+                                    <label>
+                                        <input type="password" name="password" placeholder="Enter Your Password" class="reg__input">
+                                    </label>
+                                    <button class="button cart-btn" type="submit">
+                                        Register
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>    
+    `
 });
 
 Vue.component('product-item', {
@@ -162,6 +223,7 @@ const app = new Vue({
         mail: '',
         comment: '',
         isVisibleCart: false,
+        showModal: false
     },
     mounted() {
         fetch(`${API_URL}/cart`)
