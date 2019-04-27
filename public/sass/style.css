@@ -487,6 +487,11 @@ input[id="sign-up"]:checked ~ .content .sign-up {
     margin-bottom: 20px;
     border: 1px solid #eeeeee; }
 
+.reg-private {
+  padding: 40px 10px; }
+  .reg-private li {
+    margin-bottom: 40px; }
+
 .footer-info {
   padding: 109px 0 70px; }
 

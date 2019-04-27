@@ -21,13 +21,75 @@ Vue.component('search', {
     }
 });
 
+
 Vue.component('modal', {
-    template: `
+props: ['users'],
+    data() {
+    return {
+        name: '',
+        login: '',
+        password: '',
+        mail: '',
+        changePassword: '',
+        showChangePassword: false,
+    }
+},
+methods: {
+    handleSignUp() {
+        fetch(`${API_URL}/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                login: this.login,
+                password: this.password,
+                name: this.name,
+                mail: this.mail,
+            })
+        })
+            .then((response) => response.json())
+            .then((item) => {
+                this.users.push(item);
+            });
+    },
+    handleSignIn() {
+        const userReg = this.users.find((user) => user.login === this.login && user.password === this.password);
+        if (userReg === undefined) {
+            localStorage.clear();
+            console.log('Error');
+        } else {
+            localStorage.setItem('user', userReg.login);
+            localStorage.setItem('userId', userReg.id);
+        }
+        window.location.reload();
+    },
+    handleLogOut() {
+        localStorage.clear();
+        window.location.reload();
+    },
+    handleChangePassword() {
+        const id = localStorage.getItem('userId');
+        fetch(`${API_URL}/users/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({password: this.changePassword}),
+        })
+            .then((response) => response.json())
+            .then((item) => {
+                const itemIdx = this.users.findIndex((entry) => entry.id === item.id);
+                Vue.set(this.users, itemIdx, item);
+            });
+    },
+},
+template: `
            <transition name="modal">
         <div class="modal-mask">
             <div class="modal-wrapper">
                 <div class="modal-container">
-                    <div class="tabs">
+                    <div v-if="localStorage.getItem('user') === null" class="tabs">
                         <input type="radio" name="tab" id="sign-in" class="tab-input" checked>
                         <label for="sign-in" class="tab">Sign-in</label>
                         <input type="radio" name="tab" class="tab-input" id="sign-up" >
@@ -42,12 +104,12 @@ Vue.component('modal', {
                                 </h3>
                                 <form action="#" class="reg">
                                     <label>
-                                        <input type="text" name="login" placeholder="Enter Your Login" class="reg__input">
+                                        <input type="text" name="login" placeholder="Enter Your Login" class="reg__input" v-model="login">
                                     </label>
                                     <label>
-                                        <input type="password" name="password" placeholder="Enter Your Password" class="reg__input">
+                                        <input type="password" name="password" placeholder="Enter Your Password" class="reg__input" v-model="password">
                                     </label>
-                                    <button type="submit" class="button cart-btn">
+                                    <button type="submit" class="button cart-btn" @click.prevent="handleSignIn()">
                                         Login
                                     </button>
                                 </form>
@@ -58,23 +120,56 @@ Vue.component('modal', {
                                 </h3>
                                 <form action="#" class="reg">
                                     <label>
-                                        <input type="text" name="name" placeholder="Enter Your Name" class="reg__input">
+                                        <input type="text" name="name" placeholder="Enter Your Name" class="reg__input" v-model="name">
                                     </label>
                                     <label>
-                                        <input type="text" name="login" placeholder="Enter Your Login" class="reg__input">
+                                        <input type="text" name="login" placeholder="Enter Your Login" class="reg__input" v-model="login">
                                     </label>
                                     <label>
-                                        <input type="email" name="email" placeholder="Enter Your Email" class="reg__input">
+                                        <input type="email" name="email" placeholder="Enter Your Email" class="reg__input" v-model="mail">
                                     </label>
                                     <label>
-                                        <input type="password" name="password" placeholder="Enter Your Password" class="reg__input">
+                                        <input type="password" name="password" placeholder="Enter Your Password" class="reg__input" v-model="password">
                                     </label>
-                                    <button class="button cart-btn" type="submit">
+                                    <button class="button cart-btn" type="submit" @click.prevent="handleSignUp()">
                                         Register
                                     </button>
                                 </form>
                             </div>
                         </div>
+                    </div>
+                    <div v-else class="content">
+                         <button class="modal-button button-close" type="button" @click="$emit('close')">
+                            <i class="far fa-times-circle"></i>
+                         </button>
+                         <ul class="reg reg-private">
+                         <li>
+                            <a v-if="showChangePassword === false" href="shopping_cart.html" class="button cart-btn">
+                                My orders
+                            </a>
+                         </li>
+                         <li>
+                            <button v-if="showChangePassword === false" class="button cart-btn change-pass" type="button" @click="showChangePassword = true">
+                              Change password?
+                            </button>
+                        </li>  
+                             <form v-if="showChangePassword" action="#" class="reg pass-form">
+                                 <h3>
+                                    Are You Sure?
+                                 </h3>
+                                 <label>
+                                    <input type="password" name="password" placeholder="Enter New Password" class="reg__input" v-model="changePassword">
+                                 </label>
+                                 <button class="button cart-btn" type="submit" @click.prevent="handleChangePassword()">
+                                        Change password
+                                </button>
+                             </form>
+                          <li>
+                            <button v-if="showChangePassword === false" class="button cart-btn" type="button" @click.prevent="handleLogOut()">
+                                Log Out
+                            </button>  
+                          </li>
+                         </ul>
                     </div>
                 </div>
             </div>
@@ -217,8 +312,10 @@ const app = new Vue({
         items: [],
         cart: [],
         filterValue: '',
+        searchQuery: '',
         feedback: [],
         approved: [],
+        users: [],
         name: '',
         mail: '',
         comment: '',
@@ -235,13 +332,19 @@ const app = new Vue({
         fetch(`${API_URL}/feedback`)
             .then((response) => response.json())
             .then((items) => {
-                this.feedback= items;
+                this.feedback = items;
             });
 
         fetch(`${API_URL}/feedback_approve`)
             .then((response) => response.json())
             .then((items) => {
-                this.approved= items;
+                this.approved = items;
+            });
+
+        fetch(`${API_URL}/users`)
+            .then((response) => response.json())
+            .then((items) => {
+                this.users = items;
             });
     },
     computed: {
@@ -250,7 +353,15 @@ const app = new Vue({
         },
         total() {
             return this.cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
-        }
+        },
+        getUser() {
+            let loginReg = localStorage.getItem('user');
+            if (loginReg === null) {
+                return 'My Account';
+            } else {
+                return loginReg;
+            }
+        },
     },
     methods: {
         handleSearchClick(query) {
@@ -288,13 +399,12 @@ const app = new Vue({
             }
         },
         clearCart() {
-            this.cart.forEach((item) => {
-                fetch(`${API_URL}/cart/${item.id}`, {
-                    method: "DELETE"
-                }).then(() => {
-                    this.cart = [];
-                })
+            fetch(`${API_URL}/cart`, {
+                method: 'DELETE',
             })
+                .then(() => {
+                    this.cart = [];
+                });
         },
         handleDeleteClick(item) {
             if (item.quantity > 1) {
@@ -348,6 +458,20 @@ const app = new Vue({
                 .then((item) => {
                     this.approved.push(item);
                 });
-        }
+            fetch(`${API_URL}/feedback/${item.id}`, {
+                method: 'DELETE',
+            })
+                .then(() => {
+                    this.feedback = this.feedback.filter((comment) => comment.id !== item.id);
+                });
+        },
+        handleDeleteFeedback(item) {
+            fetch(`${API_URL}/feedback/${item.id}`, {
+                method: 'DELETE',
+            })
+                .then(() => {
+                    this.feedback = this.feedback.filter((comment) => comment.id !== item.id);
+                });
+        },
     }
 });

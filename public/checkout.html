@@ -66,94 +66,22 @@
                                 </ul>
                             </div>
                         </div>
-                        <input class=" nav-left__input" type="text" placeholder="Search for Item...">
-                        <button class=" nav-left__search button" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
+                        <search @onsearch="handleSearchClick"></search>
                     </div>
                 </div>
                 <div class="nav-right d-flex align-i-с">
                     <div class="nav-right__drop">
-                        <a href="shopping_cart.html" class="nav-right__img">
+                        <button type="button" class="nav-right__img" @click="isVisibleCart = !isVisibleCart">
+                            <div v-if="cart.length" class="cart-quantity-items">{{totalQuantity}}</div>
                             <img src="img/cart.svg" alt="cart">
-                        </a>
-                        <div class="drop-box-cart">
-                            <ul class="box-cart">
-                                <li class="box-cart__item d-flex align-i-с">
-                                    <img src="img/Cart_image1.jpg" alt="product_photo">
-                                    <div class="box-cart__wrap">
-                                        <p class="box-cart__title">
-                                            Rebox Zane
-                                        </p>
-                                        <div class="box-cart__stars">
-                                            <a href="#" class="box-cart__star">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="#" class="box-cart__star">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="#" class="box-cart__star">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="#" class="box-cart__star">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="#" class="box-cart__star">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                        <p class="box-cart__price">1 x $250</p>
-                                    </div>
-                                    <a href="#" class="box-cart__icon">
-                                        <i class="fas fa-times-circle"></i>
-                                    </a>
-                                </li>
-                                <li class="box-cart__item d-flex align-i-с">
-                                    <img src="img/Cart_image2.jpg" alt="product_photo">
-                                    <div class="box-cart__wrap">
-                                        <p class="box-cart__title">
-                                            Rebox Zane
-                                        </p>
-                                        <div class="box-cart__stars">
-                                            <a href="#" class="box-cart__star">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="#" class="box-cart__star">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="#" class="box-cart__star">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="#" class="box-cart__star">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="#" class="box-cart__star">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                        <p class="box-cart__price">1 x $250</p>
-                                    </div>
-                                    <a href="#" class="box-cart__icon">
-                                        <i class="fas fa-times-circle"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="box-cart__total d-flex space-btw">
-                                <p class="box-cart__text">TOTAL</p>
-                                <p class="box-cart__text">$500.00</p>
-                            </div>
-                            <a href="checkout.html" class="box-cart__btn button">
-                                Checkout
-                            </a>
-                            <a href="shopping_cart.html" class="box-cart__btn button">
-                                Go to cart
-                            </a>
-                        </div>
+                        </button>
+                        <cart :cart="cart" v-if="isVisibleCart" @ondelete="handleDeleteClick"></cart>
                     </div>
-                    <button type="button" class="nav-right__btn button">
-                        My Account
+                    <button type="button" id="show-modal" @click="showModal = true" class="nav-right__btn button button-open">
+                        {{getUser}}
                         <i class="fas fa-caret-down"></i>
                     </button>
+                    <modal users:="users" v-if="showModal" @close="showModal = false">
                 </div>
             </div>
         </div>

@@ -4,6 +4,9 @@ Vue.component('feedback-list', {
         handleApproveFeedback(item) {
             this.$emit('approve', item);
         },
+        handleDeleteFeedback(item) {
+            this.$emit('delete', item);
+        }
     },
     template: `
         <div class="comments">
@@ -18,7 +21,7 @@ Vue.component('feedback-list', {
                  <button @click.prevent="handleApproveFeedback(item)" class="button cart-btn comments-btn">
                     Approve
                  </button>
-                 <button class="button cart-btn comments-btn">
+                 <button @click.prevent="handleDeleteFeedback(item)" class="button cart-btn comments-btn">
                     Delete
                  </button>
             </li>

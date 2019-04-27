@@ -63,7 +63,7 @@ app.use("/cart", (req, res, next) => {
 
 app.get('/feedback', (req, res) => {
     fs.readFile('./db/feedback.json', 'utf-8', (err, data) => {
-        if(err) {
+        if (err) {
             return console.log(err);
         }
 
@@ -73,16 +73,16 @@ app.get('/feedback', (req, res) => {
 
 app.post('/feedback', (req, res) => {
     fs.readFile('./db/feedback.json', 'utf-8', (err, data) => {
-        if(err) {
+        if (err) {
             return console.log(err);
         }
 
         const comment = JSON.parse(data);
-        const lastId = 1;
-        comment.push({...req.body, "id": lastId});
+        req.body.id = comment.length + 1;
+        comment.push(req.body);
 
         fs.writeFile('./db/feedback.json', JSON.stringify(comment), (err) => {
-            if(err) {
+            if (err) {
                 return console.log(err);
             }
 
@@ -93,7 +93,7 @@ app.post('/feedback', (req, res) => {
 
 app.get('/feedback_approve', (req, res) => {
     fs.readFile('./db/feedback_approve.json', 'utf-8', (err, data) => {
-        if(err) {
+        if (err) {
             return console.log(err);
         }
 
@@ -103,7 +103,7 @@ app.get('/feedback_approve', (req, res) => {
 
 app.post('/feedback_approve', (req, res) => {
     fs.readFile('./db/feedback_approve.json', 'utf-8', (err, data) => {
-        if(err) {
+        if (err) {
             return console.log(err);
         }
 
@@ -111,7 +111,7 @@ app.post('/feedback_approve', (req, res) => {
         comment.push(req.body);
 
         fs.writeFile('./db/feedback_approve.json', JSON.stringify(comment), (err) => {
-            if(err) {
+            if (err) {
                 return console.log(err);
             }
 
@@ -120,6 +120,81 @@ app.post('/feedback_approve', (req, res) => {
     });
 });
 
+app.delete('/feedback/:id', (req, res) => {
+    fs.readFile('./db/feedback.json', 'utf-8', (err, data) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        const comment = JSON.parse(data);
+
+        comment.splice(comment.indexOf(+req.params.id), 1);
+
+        fs.writeFile('./db/feedback.json', JSON.stringify(comment), (err) => {
+            if (err) {
+                return console.log(err);
+            }
+
+            res.send(req.body);
+        });
+    });
+});
+
+app.get('/users', (req, res) => {
+    fs.readFile('./db/users.json', 'utf-8', (err, data) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        res.send(data);
+    });
+});
+
+app.post('/users', (req, res) => {
+    fs.readFile('./db/users.json', 'utf-8', (err, data) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        const user = JSON.parse(data);
+        req.body.id = user.length + 1;
+        user.push(req.body);
+
+        fs.writeFile('./db/users.json', JSON.stringify(user), (err) => {
+            if (err) {
+                return console.log(err);
+            }
+
+            res.send(req.body);
+        });
+    });
+});
+
+app.patch('/users/:id', (req, res) => {
+    fs.readFile('./db/users.json', 'utf-8', (err, data) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        let user = JSON.parse(data);
+
+        user = user.map((item) => {
+            if (item.id === +req.params.id) {
+                return {...item, ...req.body};
+            }
+
+            return item;
+        });
+
+        fs.writeFile('./db/users.json', JSON.stringify(user), (err) => {
+            if (err) {
+                return console.log(err);
+            }
+
+            res.send(user.find((item) => item.id === +req.params.id));
+        });
+    });
+});
 
 app.get('/products', (req, res) => {
     fs.readFile('./db/products.json', 'utf-8', (err, data) => {
@@ -198,6 +273,26 @@ app.delete('/cart/:id', (req, res) => {
 
         fs.writeFile('./db/cart.json', JSON.stringify(cart), (err) => {
             if(err) {
+                return console.log(err);
+            }
+
+            res.send(req.body);
+        });
+    });
+});
+
+app.delete('/cart', (req, res) => {
+    fs.readFile('./db/cart.json', 'utf-8', (err, data) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        let cart = JSON.parse(data);
+
+        cart = [];
+
+        fs.writeFile('./db/cart.json', JSON.stringify(cart), (err) => {
+            if (err) {
                 return console.log(err);
             }
 

@@ -77,10 +77,11 @@
                         </button>
                         <cart :cart="cart" v-if="isVisibleCart" @ondelete="handleDeleteClick"></cart>
                     </div>
-                    <button type="button" class="nav-right__btn button">
-                        My Account
+                    <button type="button" id="show-modal" @click="showModal = true" class="nav-right__btn button button-open">
+                        {{getUser}}
                         <i class="fas fa-caret-down"></i>
                     </button>
+                    <modal users:="users" v-if="showModal" @close="showModal = false">
                 </div>
             </div>
         </div>
