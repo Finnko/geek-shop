@@ -1,0 +1,164 @@
+@import "_vars"
+
+//*******  Section Cart Content *******
+
+.cart-content
+  padding: 90px 0 80px
+
+.content-heading
+  font-size: 13px
+  text-transform: uppercase
+  margin-bottom: 18px
+  letter-spacing: -0.015em
+
+.line
+  display: flex
+  align-items: center
+  border-bottom: 1px solid #eaeaea
+
+.column-short
+  flex: 0 0 12.5%
+  text-align: center
+
+.column-wide
+  flex: 0 0 37.5%
+  text-align: left
+
+.cart-item
+  padding: 22px 0 25px
+  &__img
+    flex-basis: 100px
+    margin-right: 21px
+    img
+      max-width: 100%
+  &__title
+    font-size: 13px
+    margin-bottom: 38px
+  &__text
+    color:  #575757
+    font-size: 13px
+    & span
+      color: #6f6e6e
+      font-weight: 300
+      margin-left: 5px
+
+.cart-plhold
+  border: 1px solid #eaeaea
+  box-sizing: border-box
+  width: 54px
+  height: 30px
+  text-align: center
+  outline: 0
+
+
+.cart-text
+  color:  #656565
+  font-size: 13px
+  text-transform: uppercase
+
+.cart-icon
+  color: #c0c0c0
+  font-size: 16px
+  &:hover
+    color: $color-pink
+
+.cart-buttons
+  margin: 43px 0 58px
+
+.cart-btn, .cart-btn-small
+  color:  #4a4a4a
+  letter-spacing: 0
+  text-transform: uppercase
+  padding: 19px 39px
+  border: 1px solid #eaeaea
+  &:hover
+    color: $color-pink
+    border: 1px solid $color-pink
+
+.cart-btn-small
+  font-size: 11px
+  font-weight: 700
+  display: inline-block
+  padding: 10px 19px
+  margin-top: 4px
+
+.cart-quantity
+  border: 1px solid #eaeaea
+  padding: 8px
+  width: 54px
+  text-align: center
+  color: #656565
+  font-size: 13px
+
+.cart-quantity::placeholder
+  color: #656565
+  font-size: 13px
+
+.shipping
+  align-items: flex-start
+
+.shipping__item
+  max-width: 360px
+  width: 100%
+  &_total
+    padding: 41px 43px
+    background-color: #f5f3f3
+
+.shipping__heading, .subtotal__heading
+  font-size: 16px
+  text-transform: uppercase
+  margin-bottom: 17px
+
+.shipping__field
+  padding: 12px 17px
+  width: 100%
+  color:  #b1b1b1
+  font-size: 13px
+  font-weight: 300
+  border: 1px solid #eaeaea
+  margin-bottom: 21px
+
+.shipping__field::placeholder
+  color:  #b1b1b1
+  font-size: 13px
+
+.shipping__text
+  color: #000
+  font-weight: 300
+  margin-bottom: 19px
+
+.subtotal
+  text-align: right
+  border-bottom: 1px solid #eaeaea
+  margin-bottom: 20px
+  &__btn
+    padding: 19px 0
+    text-transform: uppercase
+    font-size: 16px
+    width: 100%
+    display: block
+    font-weight: 700
+    color: #fff
+    background-color: $color-pink
+    letter-spacing: 0
+    border: 1px solid transparent
+    &:hover
+      border: 1px solid $color-pink
+      background-color: transparent
+      color: $color-pink
+  &__text
+    color:  #4a4a4a
+    font-size: 11px
+    font-weight: 400
+    padding-bottom: 14px
+    text-transform: uppercase
+
+.subtotal__heading span, .subtotal__text span
+  margin-left: 15px
+
+
+
+
+
+
+

@@ -77,10 +77,11 @@
                     </button>
                     <cart :cart="cart" v-if="isVisibleCart" @ondelete="handleDeleteClick"></cart>
                 </div>
-                <button type="button" class="nav-right__btn button">
-                    My Account
+                <button type="button" id="show-modal" @click="showModal = true" class="nav-right__btn button button-open">
+                    {{getUser}}
                     <i class="fas fa-caret-down"></i>
                 </button>
+                <modal users:="users" v-if="showModal" @close="showModal = false">
             </div>
         </div>
     </div>
@@ -651,6 +652,30 @@
             </div>
         </div>
     </section>
+    <!--Section Feedback-->
+    <section class="feedback" id="feedback">
+        <div class="container">
+            <h2>Send Us Your Feedback</h2>
+            <form class="feedback-new">
+                <label>
+                    <input placeholder="Name" v-model="name" type="text" required class="feedback-input">
+                </label>
+                <label>
+                    <input placeholder="Your e-mail" v-model="mail" type="email" required class="feedback-input">
+                </label>
+                <textarea placeholder="Your message" v-model="comment"></textarea>
+                <button type="submit" @click.prevent="handleAddFeedback" class="button cart-btn">
+                    Submit
+                </button>
+            </form>
+            <feedback-list :feedback="feedback" @approve="handleApproveFeedback" @delete="handleDeleteFeedback"></feedback-list>
+        </div>
+    </section>
+    <section class="reviews">
+        <div class="container">
+            <feedback-approved :approved="approved"></feedback-approved>
+        </div>
+    </section>
     <!--Section Pluses-->
     <section class="pluses" id="pluses">
         <div class="container">
@@ -882,6 +907,7 @@
     </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+<script src="js/feedback.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
